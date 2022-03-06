@@ -1,0 +1,34 @@
+<h2>Country</h2>
+<mat-form-field appearance="outline">
+    <mat-select name="country" [(value)]="country" (selectionChange)="loadPhoneNumbers()"
+      placeholder="Select Country">
+      <mat-option [value]="null">Select Country</mat-option>
+      <mat-option [value]="'237'">Cameroon</mat-option>
+      <mat-option [value]="'251'">Ethiopia</mat-option>
+      <mat-option [value]="'212'">Morocco</mat-option>
+      <mat-option [value]="'258'">Mozambique</mat-option>
+      <mat-option [value]="'256'">Uganda</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br/>
+  <h2>State</h2>
+  <mat-form-field appearance="outline">
+    <mat-select name="state" [disabled]="isStateDropDownEnabled()" [(value)]="state" (selectionChange)="loadPhoneNumbers()">
+        <mat-option [value]="null">Select State</mat-option>
+      <mat-option [value]="'VALID'">Valid</mat-option>
+      <mat-option [value]="'NOTVALID'">Not Valid</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <table mat-table [dataSource]= "dataSource">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>name</th>
+        <td mat-cell *matCellDef="let customer"> {{customer.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>phone</th>
+        <td mat-cell *matCellDef="let customer"> {{customer.phone}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
